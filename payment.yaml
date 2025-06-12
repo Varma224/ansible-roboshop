@@ -2,7 +2,6 @@
   hosts: payment
   become: yes
   tasks:
-
   - name: Install dependencies
     ansible.builtin.dnf:
       name: "{{ item }}"
@@ -24,8 +23,6 @@
     ansible.builtin.file:
       path: /app
       state: directory
-      owner: roboshop
-      group: roboshop
 
   - name: Download payment code
     ansible.builtin.get_url:
@@ -37,8 +34,6 @@
       src: /tmp/payment.zip
       dest: /app
       remote_src: yes
-      owner: roboshop
-      group: roboshop
 
   - name: Install pip requirements
     ansible.builtin.pip:
