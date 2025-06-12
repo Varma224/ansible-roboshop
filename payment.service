@@ -1,10 +1,10 @@
 [Unit]
 Description=Payment Service
-After=network.target
 
 [Service]
-User=roboshop
+User=root
 WorkingDirectory=/app
+
 Environment=CART_HOST=cart.deeps.sbs
 Environment=CART_PORT=8080
 Environment=USER_HOST=user.deeps.sbs
@@ -14,8 +14,7 @@ Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
-ExecStop=/bin/kill $MAINPID
-Restart=always
+ExecStop=/bin/kill -9 $MAINPID
 SyslogIdentifier=payment
 
 [Install]
